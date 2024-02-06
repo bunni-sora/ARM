@@ -1,0 +1,17 @@
+.global fib
+
+fib:
+    STMFD sp!, {r4, r5, r6, lr}
+    MOV r4, r0
+    CMP r0, #2
+    MOV r0, #1
+    BLE fib_end
+    SUB r0,r4,#2
+    BL fib
+    MOV r5, r0
+    SUB r0,r4, #1
+    BL fib
+    ADD r0,r0,r5
+
+fib_end:
+    LDMIA sp!, {r4, r5, r6, pc}
