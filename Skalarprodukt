@@ -1,0 +1,16 @@
+.global scalar_product
+
+scalar_product:
+    MOV r3, r0
+    MOV r0, #0
+    STMFD sp!, {r4-r6,lr}
+
+loop:
+    LDR r4, [r1], #4
+    LDR r5, [r3], #4
+    MUL r6,r5,r4
+    ADD r0, r0, r6
+    SUBS r2, r2, #1
+    BLNE loop
+
+    LDMFD sp!, {r4-r6,pc}
